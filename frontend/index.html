@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#10151f">
+
+    <title>IEUM Fixer</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+</head>
+
+<body>
+    <header class="topbar">
+        <div class="brand">
+            <div class="logo">I</div>
+            <div>
+                <h1>IEUM <span>Fixer</span></h1>
+                <small>AI PROJECT RECOVERY SYSTEM</small>
+            </div>
+        </div>
+
+        <div class="top-actions">
+            <span id="serverStatus" class="server-status">
+                <i></i> 연결 확인 중
+            </span>
+            <button id="newProject" class="button secondary">
+                새 프로젝트
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section id="uploadPage" class="upload-page">
+            <div class="hero">
+                <span class="eyebrow">INTELLIGENT CODE RECOVERY</span>
+                <h2>프로젝트의 오류를<br><span>AI로 복구하세요.</span></h2>
+                <p>
+                    프로젝트를 업로드하고 분석하세요.
+                    IEUM Fixer가 오류를 탐지하고 수정 후보를 제안합니다.
+                </p>
+            </div>
+
+            <div id="dropZone" class="drop-zone">
+                <div class="upload-icon">↑</div>
+                <h3>프로젝트를 끌어다 놓으세요</h3>
+                <p>ZIP 파일 또는 프로젝트 폴더</p>
+
+                <div class="upload-buttons">
+                    <button id="selectZip" class="button primary">
+                        ZIP 선택
+                    </button>
+
+                    <button id="selectFolder" class="button secondary">
+                        폴더 선택
+                    </button>
+                </div>
+
+                <small>ZIP · HTML · CSS · JS · Python · JSON</small>
+            </div>
+
+            <input id="zipInput" type="file" accept=".zip" hidden>
+            <input id="folderInput" type="file" webkitdirectory multiple hidden>
+
+            <div id="uploadProgress" class="progress hidden">
+                <div id="progressBar"></div>
+            </div>
+
+            <p id="uploadMessage" class="upload-message"></p>
+        </section>
+
+        <section id="workspace" class="workspace hidden">
+            <aside class="sidebar">
+                <div class="section-label">PROJECT EXPLORER</div>
+                <div id="projectName" class="project-name">PROJECT</div>
+                <div id="fileTree" class="file-tree"></div>
+            </aside>
+
+            <section class="main-panel">
+                <div class="toolbar">
+                    <div>
+                        <strong id="currentFile">파일 선택</strong>
+                        <small id="fileInfo">No file selected</small>
+                    </div>
+
+                    <div class="toolbar-actions">
+                        <button id="saveFile" class="button secondary">
+                            저장
+                        </button>
+
+                        <button id="analyze" class="button primary">
+                            분석 시작
+                        </button>
+
+                        <button id="repairAll" class="button secondary">
+                            안전한 오류 수정
+                        </button>
+
+                        <button id="download" class="button secondary">
+                            ZIP 다운로드
+                        </button>
+                    </div>
+                </div>
+
+                <div class="editor-layout">
+                    <section class="editor-panel">
+                        <div class="editor-header">
+                            <span>CODE EDITOR</span>
+                            <span id="language">TEXT</span>
+                        </div>
+
+                        <textarea
+                            id="codeEditor"
+                            spellcheck="false"
+                            placeholder="파일을 선택하세요."
+                        ></textarea>
+                    </section>
+
+                    <aside class="analysis-panel">
+                        <div class="analysis-title">
+                            <strong>Analysis</strong>
+                            <span id="issueCount">0 Issues</span>
+                        </div>
+
+                        <div class="stats">
+                            <div>
+                                <strong id="errors">0</strong>
+                                <small>Errors</small>
+                            </div>
+
+                            <div>
+                                <strong id="warnings">0</strong>
+                                <small>Warnings</small>
+                            </div>
+                        </div>
+
+                        <div id="issueList" class="issue-list">
+                            <div class="empty">
+                                분석을 시작하면 결과가 표시됩니다.
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+
+                <footer class="statusbar">
+                    <span id="projectStatus">No project</span>
+                    <span>IEUM Fixer v0.2.0</span>
+                </footer>
+            </section>
+        </section>
+    </main>
+
+    <script src="js/api.js"></script>
+    <script src="js/upload.js"></script>
+    <script src="js/editor.js"></script>
+    <script src="js/renderer.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
